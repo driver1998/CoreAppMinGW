@@ -31,10 +31,11 @@ With these, just build using the makefile provided.
 
 Manual deploy is required for now, you can use the `Add-AppxPackage` PowerShell cmdlet for this.
 
-If you are currently in MSYS2 bash, you can deploy with: 
+If you are currently in MSYS2 bash, you can deploy and run the app with: 
 
 ```
 powershell.exe -Command Add-AppxPackage -Register ./AppxManifest.xml
+explorer.exe '/e,shell:appsfolder\CoreAppMinGW_706gaab1xw0ht!App'
 ```
 
 Non-desktop devices (Xbox, Mobile, IoT Core, etc) are not tested.

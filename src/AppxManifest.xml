@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" IgnorableNamespaces="uap mp build" xmlns:build="http://schemas.microsoft.com/developer/appx/2015/build">
-  <Identity Name="57ec497a-2dd0-44af-91b3-65b6c582d8a4" Publisher="CN=driver1998" Version="1.0.0.0" ProcessorArchitecture="x64" />
+  <Identity Name="CoreAppMinGW" Publisher="CN=driver1998" Version="1.0.0.0" ProcessorArchitecture="x64" />
   <mp:PhoneIdentity PhoneProductId="f480829b-6265-47cb-9ef5-cbde5a94f4c0" PhonePublisherId="ae73d589-8d9b-478e-b457-077711d3e593" />
   <Properties>
     <DisplayName>CoreAppMinGW</DisplayName>
