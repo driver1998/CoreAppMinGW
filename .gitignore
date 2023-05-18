@@ -1,0 +1,9 @@
+*.res
+*.o
+*.exe
+
+src/*.winmd
+src/cppwinrt
+src/cppwinrt-headers
+src/microsoft.system.package.metadata
+
