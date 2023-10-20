@@ -7,17 +7,19 @@ LDFLAGS=-mwindows -municode -static
 
 all: CoreAppMinGW.exe
 
+HEADERS= Property.hpp
+
 cppwinrt-headers:
 	cppwinrt -pch . -input references/Windows.winmd -output cppwinrt
 	touch cppwinrt-headers
 
-%.o: %.cpp %.h cppwinrt-headers
+%.o: %.cpp %.h ${HEADERS} cppwinrt-headers
 	${CXX} -c ${CXXFLAGS} ${INCLUDES} $< -o $@
 
 App.o: App.cpp cppwinrt-headers
 	${CXX} -c ${CXXFLAGS} ${INCLUDES} $< -o $@
 
-CoreAppMinGW.exe: App.o MainWindowView.o MainWindowViewModel.o SimpleCommand.o NegativeDoubleConverter.o ListItem.o CustomProperty.o
+CoreAppMinGW.exe: App.o MainWindowView.o MainWindowViewModel.o SimpleCommand.o NegativeDoubleConverter.o ListItem.o
 	${CXX} $^ ${LIBS} ${LDFLAGS} -o $@
 
 clean:
