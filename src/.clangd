@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [-Icppwinrt, -std=c++20]
+  Add: [-Ibuild/cppwinrt, -std=c++20]

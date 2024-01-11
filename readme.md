@@ -12,6 +12,7 @@ To stress test the new C++/WinRT MinGW support mostly, also it is fun.
 
 To build this, you'll need the following:
 
+- CMake
 - C++/WinRT `cppwinrt.exe` in `$PATH`
 - A MinGW toolchain, LLVM/Clang 15 and GCC 12 from MSYS2 are tested.
 
@@ -25,7 +26,12 @@ pacman -S mingw-w64-clang-x86_64-toolchain mingw-w64-clang-x86_64-cppwinrt
 pacman -S mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-cppwinrt
 ```
 
-With these, just build using the makefile provided.
+With these, just build using CMake:
+```
+cd src/build
+cmake ..
+cmake --build .
+```
 
 ## Deploy
 
