@@ -10,10 +10,29 @@ endif()
 
 set(CMAKE_EXE_LINKER_FLAGS "-mwindows -municode -static")
 
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "AMD64")
+    set(APPX_ARCHITECTURE "amd64")
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "x86")
+    set(APPX_ARCHITECTURE "x86")
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "ARM64")
+    set(APPX_ARCHITECTURE "arm64")
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "ARM")
+    set(APPX_ARCHITECTURE "arm")
+else()
+    message(FATAL_ERROR "Invalid architecture ${CMAKE_SYSTEM_PROCESSOR}")
+endif()
+
+message(STATUS "Building for ${APPX_ARCHITECTURE}.")
+
+file(COPY Images MainWindowView.xaml DESTINATION ${CMAKE_BINARY_DIR})
+configure_file(AppxManifest.in AppxManifest.xml)
+
 set(CPPWINRT_INPUT "references/Windows.winmd")
 set(CPPWINRT_OUTPUT_DIR "${CMAKE_BINARY_DIR}/cppwinrt")
 
-add_custom_target(CppWinRT_HeaderGen
+add_custom_command(
+    OUTPUT
+        ${CPPWINRT_OUTPUT_DIR}/winrt/base.h
     COMMAND
         cppwinrt.exe -pch . -input ${CPPWINRT_INPUT} -output ${CPPWINRT_OUTPUT_DIR}
     WORKING_DIRECTORY
@@ -21,9 +40,8 @@ add_custom_target(CppWinRT_HeaderGen
     COMMENT
         "Generating C++/WinRT Headers...")
 
-file(COPY Images AppxManifest.xml MainWindowView.xaml DESTINATION ${CMAKE_BINARY_DIR})
-
 set(SOURCES
+    ${CPPWINRT_OUTPUT_DIR}/winrt/base.h
     App.cpp
     Property.hpp
     MainWindowView.cpp
@@ -38,7 +56,6 @@ set(SOURCES
     SimpleCommand.h)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
-add_dependencies(${PROJECT_NAME} CppWinRT_HeaderGen)
 include_directories(${CPPWINRT_OUTPUT_DIR})
 
 target_link_libraries(${PROJECT_NAME} ole32 oleaut32 ucrtapp windowsapp winstorecompat)
