@@ -20,10 +20,10 @@ The best way to get a working toolchain is install the following in MSYS2:
 
 ```
 # CLANG64 Subsystem, with LLVM/Clang
-pacman -S mingw-w64-clang-x86_64-toolchain mingw-w64-clang-x86_64-cppwinrt
+pacman -S mingw-w64-clang-x86_64-{toolchain,cppwinrt,cmake,ninja}
 
 # UCRT64 Subsystem, with GCC
-pacman -S mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-cppwinrt
+pacman -S mingw-w64-ucrt-x86_64-{toolchain,cppwinrt,cmake,ninja}
 ```
 
 With these, just build using CMake:
