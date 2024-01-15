@@ -74,8 +74,11 @@ namespace winrt::CoreAppMinGW::implementation {
         hstring Name() { return m_name; }
         TypeName Type() { return m_type; }
         IInspectable Getter() { return winrt::box_value(this->value); }
-        void Setter(IInspectable const &value) { this->value = winrt::unbox_value<T>(value); }
-
+        void Setter(IInspectable const &value) {
+            this->value = winrt::unbox_value<T>(value);
+            this->m_onPropertyChanged(m_name);
+        }
+        
         T value;
 
       private:
