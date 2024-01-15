@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" IgnorableNamespaces="uap mp build" xmlns:build="http://schemas.microsoft.com/developer/appx/2015/build">
-  <Identity Name="CoreAppMinGW" Publisher="CN=driver1998" Version="1.0.0.0" ProcessorArchitecture="@APPX_ARCHITECTURE@" />
-  <mp:PhoneIdentity PhoneProductId="f480829b-6265-47cb-9ef5-cbde5a94f4c0" PhonePublisherId="ae73d589-8d9b-478e-b457-077711d3e593" />
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="CoreAppMinGW" Publisher="CN=driver1998" Version="1.0.0.0" ProcessorArchitecture="@APPX_ARCHITECTURE@" />  
   <Properties>
     <DisplayName>CoreAppMinGW</DisplayName>
     <PublisherDisplayName>driver1998</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
-  <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22621.0" />
-  </Dependencies>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
   <Resources>
     <Resource Language="ZH-CN" />
   </Resources>
   <Applications>
     <Application Id="App" Executable="CoreAppMinGW.exe" EntryPoint="CoreAppMinGW.App">
-      <uap:VisualElements DisplayName="CoreAppMinGW" Description="CoreAppMinGW" BackgroundColor="transparent" Square150x150Logo="Images\Square150x150Logo.png" Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
-        <uap:SplashScreen Image="Images\SplashScreen.png" uap5:Optional="true"/>
-      </uap:VisualElements>
+      <VisualElements DisplayName="CoreAppMinGW" Description="CoreAppMinGW" ForegroundText="light" BackgroundColor="#0063b1" Logo="Images\Square150x150Logo.png" SmallLogo="Images\Square44x44Logo.png">
+        <DefaultTile WideLogo="Images\Wide310x150Logo.png" />
+        <SplashScreen Image="Images\SplashScreen.png" BackgroundColor="#0063b1"/>
+      </VisualElements>
     </Application>
   </Applications>
   <Capabilities>

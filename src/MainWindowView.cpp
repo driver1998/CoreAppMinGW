@@ -8,6 +8,7 @@
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.UI.Core.h>
+#include <winrt/Windows.UI.Popups.h>
 #include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
 #include <winrt/Windows.UI.Xaml.Controls.h>
 #include <winrt/Windows.UI.Xaml.Input.h>
@@ -21,6 +22,7 @@
 
 namespace winrt {
     using namespace winrt::Windows::Foundation;
+    using namespace winrt::Windows::UI::Popups;
     using namespace winrt::Windows::UI::Xaml;
     using namespace winrt::Windows::UI::Xaml::Controls;
 } // namespace winrt
@@ -42,9 +44,6 @@ namespace winrt::CoreAppMinGW::implementation {
         if (btn2) {
             btn2.Click([](IInspectable const &sender,
                           RoutedEventArgs const &args) -> winrt::fire_and_forget {
-                ContentDialog dialog;
-                dialog.Title(winrt::box_value(L"MinGW UWP Demo"));
-
                 bool isAppContainer = false;
                 bool isCoreWindow = Windows::UI::Core::CoreWindow::GetForCurrentThread() != nullptr;
                 std::ostringstream oss;
@@ -83,8 +82,7 @@ namespace winrt::CoreAppMinGW::implementation {
                 oss << "SDK: MinGW-w64 " __MINGW64_VERSION_STR "\n";
 #endif
 
-                dialog.Content(winrt::box_value(winrt::to_hstring(oss.str())));
-                dialog.CloseButtonText(L"OK");
+                MessageDialog dialog {winrt::to_hstring(oss.str()), L"MinGW Metro App Demo"};
                 co_await dialog.ShowAsync();
             });
         }

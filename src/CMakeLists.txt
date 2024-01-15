@@ -12,7 +12,7 @@ else()
     if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86|AMD64")
         set(CMAKE_CXX_FLAGS "-mcx16")
     endif()
-    set(CMAKE_EXE_LINKER_FLAGS "-municode -static")
+    set(CMAKE_EXE_LINKER_FLAGS "-municode -static -Wl,--appcontainer")
 endif()
 
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "AMD64")
@@ -58,7 +58,9 @@ set(SOURCES
     NegativeDoubleConverter.cpp
     NegativeDoubleConverter.h
     SimpleCommand.cpp
-    SimpleCommand.h)
+    SimpleCommand.h
+    ColorValue.cpp
+    ColorValue.h)
 
 add_executable(${PROJECT_NAME} WIN32 ${SOURCES})
 include_directories(${CPPWINRT_OUTPUT_DIR})

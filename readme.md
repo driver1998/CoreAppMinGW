@@ -1,6 +1,6 @@
-# MinGW UWP Demo
+# MinGW Windows 8.1 Metro App Demo
 
-This is a demo of UWP apps (CoreApplication) on MinGW.
+This is a demo of Windows 8.1 Metro App on MinGW.
 
 ![demo](Images/demo.png)
 
@@ -14,16 +14,13 @@ To build this, you'll need the following:
 
 - CMake
 - C++/WinRT `cppwinrt.exe` in `$PATH`
-- A MinGW toolchain, LLVM/Clang 15 and GCC 12 from MSYS2 are tested.
+- Clang/LLVM MinGW toolchain, LLVM/Clang 17 from MSYS2 are tested.
 
 The best way to get a working toolchain is install the following in MSYS2:
 
 ```
 # CLANG64 Subsystem, with LLVM/Clang
 pacman -S mingw-w64-clang-x86_64-{toolchain,cppwinrt,cmake,ninja}
-
-# UCRT64 Subsystem, with GCC
-pacman -S mingw-w64-ucrt-x86_64-{toolchain,cppwinrt,cmake,ninja}
 ```
 
 With these, just build using CMake:
@@ -35,16 +32,8 @@ cmake --build .
 
 ## Deploy
 
-Manual deploy is required for now, you can use the `Add-AppxPackage` PowerShell cmdlet for this.
-
-If you are currently in MSYS2 bash, you can deploy and run the app with: 
-
-```
-powershell.exe -Command Add-AppxPackage -Register ./AppxManifest.xml
-explorer.exe '/e,shell:appsfolder\CoreAppMinGW_706gaab1xw0ht!App'
-```
-
-Non-desktop devices (Xbox, Mobile, IoT Core, etc) are not tested.
+Manual deploy is required for now, and you may need to package your app
+in order to sideload on actual Windows 8.1 machines. 
 
 ## What works
 

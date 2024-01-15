@@ -5,6 +5,7 @@
 #include <winrt/base.h>
 
 #include "ListItem.h"
+#include "ColorValue.h"
 #include "Property.hpp"
 
 namespace winrt {
@@ -30,8 +31,9 @@ namespace winrt::CoreAppMinGW::implementation {
                                            onPropertyChanged};
         Property<IObservableVector<IInspectable>> Items{
             L"Items", winrt::xaml_typename<IObservableVector<IInspectable>>(), onPropertyChanged};
+        Property<IInspectable> TextColor{L"TextColor", winrt::xaml_typename<IInspectable>(), onPropertyChanged};
 
-        std::vector<IProperty *> PropertyList = {&Message, &UserName, &GreetingCommand, &Items};
+        std::vector<IProperty *> PropertyList = {&Message, &UserName, &GreetingCommand, &Items, &TextColor};
         Event<PropertyChangedEventHandler> PropertyChanged;
     };
 } // namespace winrt::CoreAppMinGW::implementation

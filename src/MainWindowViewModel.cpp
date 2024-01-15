@@ -16,5 +16,7 @@ namespace winrt::CoreAppMinGW::implementation {
             winrt::make<ListItem>(L"WinRT meets MinGW", L"it really works"),
             winrt::make<ListItem>(L"FOSS Rocks", L"always have been"),
         });
+
+        TextColor.value = winrt::make<ColorValue>(127, 255, 0);
     }
 } // namespace winrt::CoreAppMinGW::implementation

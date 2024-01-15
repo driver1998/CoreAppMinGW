@@ -4,39 +4,65 @@
     <ScrollViewer Padding="8">
         <StackPanel Orientation="Vertical">
             <TextBox Text="{Binding UserName, Mode=TwoWay}" />
-            <TextBlock FontSize="{Binding ElementName=slider, Path=Value}" Text="{Binding Message}">
+            <TextBlock FontSize="{Binding ElementName=slider, Path=Value}" Text="{Binding Message, Mode=OneWay}">
                 <TextBlock.Foreground>
-                    <SolidColorBrush Color="{Binding ElementName=colorPicker, Path=Color}" />
+                    <SolidColorBrush Color="{Binding TextColor.Value}" />
                 </TextBlock.Foreground>
             </TextBlock>
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="btn1" Command="{Binding GreetingCommand}">Say Hello</Button>
-                <Button x:Name="btn2">About</Button>
+                <Button Name="btn1" Command="{Binding GreetingCommand}">Say Hello</Button>
+                <Button Name="btn2">About</Button>
             </StackPanel>
-            <Slider x:Name="slider" Minimum="1" Maximum="100" Value="32" />
+            <Slider Name="slider" Minimum="1" Maximum="100" Value="32" />
             <TextBlock Padding="0,0,0,8">
                 Slider.Value:
                 <Run Text="{Binding ElementName=slider, Path=Value}"></Run>
                 <LineBreak />
-                NegativeDoubleConverter: 
+                NegativeDoubleConverter:
                 <Run Text="{Binding ElementName=slider, Path=Value, Converter={StaticResource NegativeDoubleConverter}}"></Run>
-            </TextBlock>            
+            </TextBlock>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <ColorPicker Grid.Column="0" x:Name="colorPicker" Color="Blue" Margin="0,0,8,0"/>
-                <ListView Grid.Column="1" ItemsSource="{Binding Items}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48" />
+                        <RowDefinition Height="48" />
+                        <RowDefinition Height="48" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36" />
+                        <ColumnDefinition Width="24" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Red</TextBlock>                    
+                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding TextColor.Red, Mode=OneWay}" />
+                    <Slider Name="redSlider" Grid.Row="0" Grid.Column="2" Foreground="Red"
+                        Minimum="0" Maximum="255" Value="{Binding TextColor.Red, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Green</TextBlock>                    
+                    <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding TextColor.Green, Mode=OneWay}" />
+                    <Slider Name="greenSlider" Grid.Row="1" Grid.Column="2" Foreground="Green"
+                        Minimum="0" Maximum="255" Value="{Binding TextColor.Green, Mode=TwoWay}" />
+                    
+                    <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Blue</TextBlock>                    
+                    <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding TextColor.Blue, Mode=OneWay}" />
+                    <Slider Name="blueSlider" Grid.Row="2" Grid.Column="2" Foreground="Blue"
+                        Minimum="0" Maximum="255" Value="{Binding TextColor.Blue, Mode=TwoWay}" />
+                </Grid>
+                 <ListView Grid.Column="1" ItemsSource="{Binding Items}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Padding="8">
-                                <TextBlock Text="{Binding Name}" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                                <TextBlock Text="{Binding Value}"/>
-                            </StackPanel>
+							<StackPanel Orientation="Vertical" Margin="8">
+								<TextBlock Text="{Binding Name}" FontSize="36" />
+								<TextBlock Text="{Binding Value}" />
+							</StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView> 
             </Grid>
         </StackPanel>
     </ScrollViewer>
