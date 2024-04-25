@@ -15,7 +15,7 @@ else()
         set(CMAKE_CXX_FLAGS "-mcx16")
     endif()
     set(CMAKE_EXE_LINKER_FLAGS "-municode -static")
-    
+
     set(CMAKE_REQUIRED_FLAGS "-Wl,--appcontainer")
     check_c_source_compiles("int wWinMain(void) {return 0;}" LINKER_SUPPORTS_APPCONTAINER_FLAG)
     if(LINKER_SUPPORTS_APPCONTAINER_FLAG)
@@ -77,3 +77,14 @@ else()
     target_link_libraries(${PROJECT_NAME} ucrtapp windowsapp winstorecompat)
 endif()
 
+add_custom_target(appx
+    COMMAND
+        ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/appx/Images"
+    COMMAND
+        ${CMAKE_COMMAND} -E copy_if_different MainWindowView.xaml AppxManifest.xml "${PROJECT_NAME}.exe" "${CMAKE_BINARY_DIR}/appx"
+    COMMAND
+        ${CMAKE_COMMAND} -E copy_if_different Images/* "${CMAKE_BINARY_DIR}/appx/Images"
+    COMMAND
+        makemsix pack -d appx -p "${PROJECT_NAME}.appx"
+    DEPENDS "${PROJECT_NAME}.exe"
+)
