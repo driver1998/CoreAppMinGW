@@ -13,8 +13,8 @@ To stress test the new C++/WinRT MinGW support mostly, also it is fun.
 To build this, you'll need the following:
 
 - CMake
-- C++/WinRT `cppwinrt.exe` in `$PATH`
-- A MinGW toolchain, LLVM/Clang 15 and GCC 12 from MSYS2 are tested.
+- C++/WinRT `cppwinrt` in `$PATH`
+- A MinGW toolchain, LLVM/Clang 15 and GCC 12 from MSYS2 are tested. llvm-mingw is also tested.
 
 The best way to get a working toolchain is install the following in MSYS2:
 
@@ -45,6 +45,22 @@ explorer.exe '/e,shell:appsfolder\CoreAppMinGW_706gaab1xw0ht!App'
 ```
 
 Non-desktop devices (Xbox, Mobile, IoT Core, etc) are not tested.
+
+## Packaging
+
+You can create an Appx with the `appx` target:
+
+```
+cmake --build . -t appx
+```
+
+`makemsix` from [msix-packaging](https://github.com/microsoft/msix-packaging) is required in `$PATH`.
+
+The package is not signed by default.
+
+Due to a bug in `osslsigncode`, signing the package requires a patched version (should be fixed in 2.9), or patch `makemsix` to workaround the issue (See https://github.com/mtrojnar/osslsigncode/issues/367).
+
+Alternatively, you can use `MakeAppx.exe` and `SignTool.exe` from Windows SDK.
 
 ## What works
 
