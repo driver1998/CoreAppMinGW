@@ -59,6 +59,7 @@ cmake --build . -t appx
 The package is not signed by default.
 
 Signing the package requires osslsigncode version 2.9 or higher due to a bug in msix/appx handling.
+
 Alternatively, you can use `MakeAppx.exe` and `SignTool.exe` from Windows SDK.
 
 ## What works
