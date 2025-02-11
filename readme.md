@@ -44,7 +44,7 @@ powershell.exe -Command Add-AppxPackage -Register ./AppxManifest.xml
 explorer.exe '/e,shell:appsfolder\CoreAppMinGW_706gaab1xw0ht!App'
 ```
 
-Non-desktop devices (Xbox, Mobile, IoT Core, etc) are not tested.
+It is tested to be working on recent enough OS versions on Xbox and IoT Core, for Mobile some hacks might be needed, aside from a working toolchain for 32-bit ARM.
 
 ## Packaging
 
